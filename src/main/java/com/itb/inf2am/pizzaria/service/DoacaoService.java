@@ -6,18 +6,20 @@ import java.util.List;
 
 public interface DoacaoService {
 
-    // Salva um cliente
+    // Salva uma doação
     Doacao salvarDoacao(Doacao doacao);
 
-    // Deleta um cliente pelo ID
+    // Deleta uma doação pelo ID
     boolean deletarDoacao(Integer id);
 
-    // Lista todos os clientes
+    // Lista todas as doações
     List<Doacao> listarTodosDoacao();
 
-    // Lista um cliente por ID
+    // Lista uma doação por ID
     Doacao listarDoacaoPorId(Integer id);
 
-    // Atualiza um cliente pelo ID
+    // Atualiza uma doação pelo ID
     Doacao atualizarDoacao(Doacao doacao, Integer id);
+
+    List<Doacao> listarDoacoesPorEmail(String email);
 }

@@ -18,7 +18,6 @@ public class DoacaoServiceImpl implements DoacaoService {
         this.doacaoRepository = doacaoRepository;
     }
 
-
     @Override
     @Transactional
     public Doacao salvarDoacao(Doacao doacao) {
@@ -28,14 +27,14 @@ public class DoacaoServiceImpl implements DoacaoService {
         return doacaoRepository.save(doacao);
     }
 
-
+    @Override
     @Transactional
-    public boolean deletarDoacao(Integer id) { // Alterado para Long
+    public boolean deletarDoacao(Integer id) {
         if (doacaoRepository.existsById(id)) {
             doacaoRepository.deleteById(id);
             return true;
         } else {
-            throw new NotFound("Cliente não encontrado com o id " + id); // Corrigido para "Cliente"
+            throw new NotFound("Cliente não encontrado com o id " + id);
         }
     }
 
@@ -44,20 +43,17 @@ public class DoacaoServiceImpl implements DoacaoService {
         return doacaoRepository.findAll();
     }
 
-    public Doacao listarDoacaoPorId(Long id) {
-        return null;
-    }
-
-    public Doacao listarDoacaoPorId(Integer id) { // Alterado para Long
+    @Override
+    public Doacao listarDoacaoPorId(Integer id) {
         return doacaoRepository.findById(id)
-                .orElseThrow(() -> new NotFound("Cliente não encontrado com o id " + id)); // Melhor tratamento de exceção
+                .orElseThrow(() -> new NotFound("Cliente não encontrado com o id " + id));
     }
 
     @Override
     @Transactional
     public Doacao atualizarDoacao(Doacao doacao, Integer id) {
         try {
-            if(!doacao.validarDoacao()){
+            if (!doacao.validarDoacao()) {
                 throw new BadRequest(doacao.getMessage());
             }
             Doacao doacaoBd = doacaoRepository.findById(id).get();
@@ -65,11 +61,15 @@ public class DoacaoServiceImpl implements DoacaoService {
             doacaoBd.setTitulo(doacao.getTitulo());
             doacaoBd.setAutor(doacao.getAutor());
             doacaoBd.setDescricao(doacao.getDescricao());
-            return doacaoRepository.save(doacaoBd); // quando é o mesmo objeto o "save" atualiza (update)
-        } catch (Exception e){
+            return doacaoRepository.save(doacaoBd);
+        } catch (Exception e) {
             throw new NotFound("Doação não encontrada com o id " + id);
         }
     }
 
 
+    @Override
+    public List<Doacao> listarDoacoesPorEmail(String email) {
+        return doacaoRepository.findByEmail(email);
+    }
 }
