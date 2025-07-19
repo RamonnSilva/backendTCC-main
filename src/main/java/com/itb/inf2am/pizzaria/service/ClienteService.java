@@ -1,4 +1,4 @@
-package com.itb.inf2am.pizzaria.services;
+package com.itb.inf2am.pizzaria.service;
 
 import com.itb.inf2am.pizzaria.model.Cliente;
 

@@ -30,6 +30,11 @@ public class Doacao {
     @Column(name = "imagem", columnDefinition = "VARBINARY(MAX)")
     private byte[] imagem;
 
+    @Column(nullable = false, length = 255)
+    private String email;
+
+
+
 
     @Transient
     private String message = "";
@@ -44,6 +49,9 @@ public class Doacao {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
     public String getNome() {
         return nome;

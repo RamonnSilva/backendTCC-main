@@ -24,6 +24,7 @@ public class Cliente {
 
     @Column(nullable = true, length = 20)   // Removido unique para telefone
     private String telefone;
+    
 
     @Transient
     private String message = "";

@@ -4,7 +4,7 @@ import com.itb.inf2am.pizzaria.exceptions.BadRequest;
 import com.itb.inf2am.pizzaria.model.Cliente;
 import com.itb.inf2am.pizzaria.model.RedefinirSenhaRequest;
 import com.itb.inf2am.pizzaria.repository.ClienteRepository;
-import com.itb.inf2am.pizzaria.services.ClienteService;
+import com.itb.inf2am.pizzaria.service.ClienteService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

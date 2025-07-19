@@ -8,6 +8,7 @@ public class DoacaoRequest {
     private String autor;
     private String descricao;
     private String imagem; // base64
+    private String email;  // campo email adicionado
 
     // Getters e Setters
     public String getNome() { return nome; }
@@ -27,4 +28,7 @@ public class DoacaoRequest {
 
     public String getImagem() { return imagem; }
     public void setImagem(String imagem) { this.imagem = imagem; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 }

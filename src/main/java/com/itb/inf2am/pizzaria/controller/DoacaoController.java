@@ -3,7 +3,7 @@ package com.itb.inf2am.pizzaria.controller;
 import com.itb.inf2am.pizzaria.exceptions.BadRequest;
 import com.itb.inf2am.pizzaria.model.Doacao;
 import com.itb.inf2am.pizzaria.model.DoacaoRequest;
-import com.itb.inf2am.pizzaria.services.DoacaoService;
+import com.itb.inf2am.pizzaria.service.DoacaoService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -31,16 +31,27 @@ public class DoacaoController {
         return ResponseEntity.ok().body(doadores);
     }
 
+    @GetMapping("/usuario")
+    public List<Doacao> getDoacoesPorEmail(@RequestParam String email) {
+        return doacaoService.listarDoacoesPorEmail(email);
+    }
+
+
     // Endpoint para receber doação com imagem em base64
     @PostMapping("/base64")
     public ResponseEntity<?> doarComImagemBase64(@RequestBody DoacaoRequest request) {
         try {
+            if (request.getEmail() == null || request.getEmail().isEmpty()) {
+                return ResponseEntity.badRequest().body("O campo email é obrigatório.");
+            }
+
             Doacao doacao = new Doacao();
             doacao.setNome(request.getNome());
             doacao.setTitulo(request.getTitulo());
             doacao.setGenero(request.getGenero());
             doacao.setAutor(request.getAutor());
             doacao.setDescricao(request.getDescricao());
+            doacao.setEmail(request.getEmail());  // Setando o email
 
             if (request.getImagem() != null && request.getImagem().contains(",")) {
                 String base64Imagem = request.getImagem().split(",")[1];
@@ -56,7 +67,10 @@ public class DoacaoController {
     }
 
     @PostMapping
-    public ResponseEntity<Doacao> criarDoacao(@RequestBody Doacao doacao) {
+    public ResponseEntity<?> criarDoacao(@RequestBody Doacao doacao) {
+        if (doacao.getEmail() == null || doacao.getEmail().isEmpty()) {
+            return ResponseEntity.badRequest().body("O campo email é obrigatório.");
+        }
         Doacao novoDoacao = doacaoService.salvarDoacao(doacao);
         return ResponseEntity.ok().body(novoDoacao);
     }
@@ -76,8 +90,11 @@ public class DoacaoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Doacao> atualizarDoacao(@RequestBody Doacao doacao, @PathVariable String id) {
+    public ResponseEntity<?> atualizarDoacao(@RequestBody Doacao doacao, @PathVariable String id) {
         try {
+            if (doacao.getEmail() == null || doacao.getEmail().isEmpty()) {
+                return ResponseEntity.badRequest().body("O campo email é obrigatório.");
+            }
             int doacaoId = Integer.parseInt(id);
             return ResponseEntity.ok().body(doacaoService.atualizarDoacao(doacao, doacaoId));
         } catch (NumberFormatException ex) {
