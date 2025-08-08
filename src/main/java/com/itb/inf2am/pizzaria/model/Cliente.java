@@ -1,6 +1,9 @@
 package com.itb.inf2am.pizzaria.model;
 
+
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "Cliente")
@@ -24,7 +27,25 @@ public class Cliente {
 
     @Column(nullable = true, length = 20)   // Removido unique para telefone
     private String telefone;
-    
+
+    @Column(nullable = true, length = 255)
+    private String endereco;
+
+    @Column(nullable = true, length = 2)
+    private String estado;
+
+
+
+    @Column(nullable = true, length = 255)
+    private String cidade;
+
+    @Column(name = "datanascimento")
+    private LocalDate datanascimento;
+
+
+
+    @Column(nullable = true, length = 4)
+    private Integer logradouro;
 
     @Transient
     private String message = "";
@@ -82,6 +103,46 @@ public class Cliente {
         } else {
             this.cep = null;
         }
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public Integer getLogradouro() {
+        return logradouro;
+    }
+
+    public void setLogradouro(Integer logradouro) {
+        this.logradouro = logradouro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public LocalDate getDataNascimento() {
+        return datanascimento;
+    }
+
+    public void setDataNascimento(LocalDate datanascimento) {
+        this.datanascimento = datanascimento;
     }
 
     // TELEFONE

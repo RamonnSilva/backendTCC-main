@@ -15,7 +15,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/cliente")
 public class FuncionarioController {
-
     private final ClienteService clienteService;
     private final ClienteRepository clienteRepository;
     private final BCryptPasswordEncoder passwordEncoder;
@@ -26,7 +25,7 @@ public class FuncionarioController {
         this.clienteService = clienteService;
         this.clienteRepository = clienteRepository;
         this.passwordEncoder = passwordEncoder;
-    }
+}
 
     @GetMapping
     public ResponseEntity<List<Cliente>> listarTodosClientes() {

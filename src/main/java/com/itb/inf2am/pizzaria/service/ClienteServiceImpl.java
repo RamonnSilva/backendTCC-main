@@ -64,6 +64,11 @@ public class ClienteServiceImpl implements ClienteService {
             clienteBd.setSenha(cliente.getSenha());
             clienteBd.setCep(cliente.getCep());
             clienteBd.setTelefone(cliente.getTelefone());
+            clienteBd.setEndereco(cliente.getEndereco());
+            clienteBd.setEstado(cliente.getEstado());
+            clienteBd.setLogradouro(cliente.getLogradouro());
+            clienteBd.setCidade(cliente.getCidade());
+            clienteBd.setDataNascimento(cliente.getDataNascimento());
 
             return clienteRepository.save(clienteBd);
         } catch (Exception e) {
