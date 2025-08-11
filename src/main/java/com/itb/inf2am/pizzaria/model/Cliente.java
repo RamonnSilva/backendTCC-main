@@ -39,8 +39,6 @@ public class Cliente {
     @Column(nullable = true, length = 255)
     private String cidade;
 
-    @Column(name = "datanascimento")
-    private LocalDate datanascimento;
 
 
 
@@ -137,13 +135,6 @@ public class Cliente {
         this.cidade = cidade;
     }
 
-    public LocalDate getDataNascimento() {
-        return datanascimento;
-    }
-
-    public void setDataNascimento(LocalDate datanascimento) {
-        this.datanascimento = datanascimento;
-    }
 
     // TELEFONE
     public String getTelefone() {

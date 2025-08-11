@@ -67,7 +67,7 @@ public class AuthController {
         newCliente.setCep(body.cep());
         newCliente.setTelefone(body.telefone());
         newCliente.setEstado(body.estado());
-        newCliente.setDataNascimento(body.datanascimento());
+
         newCliente.setCidade(body.cidade());
         newCliente.setEndereco(body.endereco());
         newCliente.setLogradouro(body.logradouro());
