@@ -40,6 +40,7 @@ public class Pedido {
     @Column(name = "datapedido")
     private LocalDateTime dataPedido;
 
+
     public Long getId() {
         return id;
     }
