@@ -51,6 +51,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/pedido").permitAll()
                         .requestMatchers(HttpMethod.GET, "/pedido/**").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "pedido/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT,"pedido/**").permitAll()
 
                         // Outros
                         .requestMatchers(HttpMethod.GET, "/total").permitAll()

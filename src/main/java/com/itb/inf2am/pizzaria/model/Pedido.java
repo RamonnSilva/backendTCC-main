@@ -27,6 +27,10 @@ public class Pedido {
     @Column(name = "imagemlivro")
     private byte[] imagemLivro;
 
+
+    @Column(name = "correios")
+    private String correios;
+
     @Column(name = "emailsolicitante")
     private String emailSolicitante;
 
@@ -106,5 +110,13 @@ public class Pedido {
 
     public void setDataPedido(LocalDateTime dataPedido) {
         this.dataPedido = dataPedido;
+    }
+
+    public String getCorreios() {
+        return correios;
+    }
+
+    public void setCorreios(String correios) {
+        this.correios = correios;
     }
 }

@@ -3,7 +3,6 @@ package com.itb.inf2am.pizzaria.service;
 import com.itb.inf2am.pizzaria.exceptions.NotFound;
 import com.itb.inf2am.pizzaria.model.Pedido;
 import com.itb.inf2am.pizzaria.repository.PedidoRepository;
-import com.itb.inf2am.pizzaria.service.PedidoService;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +21,8 @@ public class PedidoServiceImpl implements PedidoService {
     @Override
     @Transactional
     public Pedido criarPedido(Pedido pedido) {
-        // Define a data do pedido como agora
         pedido.setDataPedido(LocalDateTime.now());
 
-        // Define o status padrão se não estiver setado
         if (pedido.getStatusPedido() == null || pedido.getStatusPedido().isEmpty()) {
             pedido.setStatusPedido("Pendente");
         }
@@ -68,5 +65,28 @@ public class PedidoServiceImpl implements PedidoService {
             return true;
         }
         throw new NotFound("Pedido não encontrado com id " + id);
+    }
+
+    @Override
+    @Transactional
+    public Pedido atualizarCodigoCorreios(Long id, String codigoCorreios) {
+        Pedido pedido = pedidoRepository.findById(id)
+                .orElseThrow(() -> new NotFound("Pedido não encontrado com id " + id));
+
+        pedido.setCorreios(codigoCorreios);
+        return pedidoRepository.save(pedido);
+    }
+
+    @Override
+    @Transactional
+    public Pedido atualizarStatus(Long id, String novoStatus) {
+        Pedido pedido = buscarPedidoPorId(id);
+
+        if (novoStatus == null || novoStatus.trim().isEmpty()) {
+            throw new IllegalArgumentException("O status não pode ser vazio");
+        }
+
+        pedido.setStatusPedido(novoStatus.trim());
+        return pedidoRepository.save(pedido);
     }
 }
