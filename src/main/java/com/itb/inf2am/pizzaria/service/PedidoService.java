@@ -14,7 +14,7 @@ public interface PedidoService {
     Pedido buscarPedidoPorId(Long id);
 
 
-    Pedido atualizarStatus(Long id, String novoStatus);  // ✅ NOVO MÉTODO
+    Pedido atualizarStatus(Long id, String novoStatus);
 
     @Transactional
     Pedido atualizarPedido(Pedido pedido, Long id);
